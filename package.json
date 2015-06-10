@@ -1,0 +1,32 @@
+{
+  "name": "smooth-comparator",
+  "version": "0.0.1",
+  "description": "Compare shrinkwraps for version discrepancies.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "minimist": "^1.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node ./test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pose/smooth-comparator.git"
+  },
+  "keywords": [
+    "shrinkwrap",
+    "npm",
+    "compare",
+    "json"
+  ],
+  "author": "Alberto Pose <albertopose@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pose/smooth-comparator/issues"
+  },
+  "homepage": "https://github.com/pose/smooth-comparator"
+}

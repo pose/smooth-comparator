@@ -5,6 +5,10 @@ function createDiff(key, diff) {
   });
 }
 
+function areMajorAndMinorEqual(a, b) {
+  return a.slice(0,2).join('.') === b.slice(0,2).join('.');
+}
+
 function shrinkwrapEqual(a, b) {
   var i, diff;
 
@@ -69,6 +73,50 @@ function shrinkwrapEqual(a, b) {
     }
 
     var key = aKeys[i];
+
+    // For the root "node-version" field compare only
+    // major and minor version parts (patch component may differ).
+    if ('node-version' === key) {
+      if (typeof a[key] !== 'string' ||
+          typeof b[key] !== 'string') {
+          return {
+            result: false,
+            diff: [
+              {key: key, value: a[key], side: 'left'},
+              {key: key, value: b[key], side: 'right'}
+            ]
+          };
+      }
+
+
+      var nodeVersionA = a[key].split('.');
+      var nodeVersionB = b[key].split('.');
+
+      if (nodeVersionA.length !== 3 || nodeVersionB.length !== 3) {
+          return {
+            result: false,
+            diff: [
+              {key: key, value: a[key], side: 'left'},
+              {key: key, value: b[key], side: 'right'}
+            ]
+          };
+      }
+
+
+      if(!areMajorAndMinorEqual(nodeVersionA, nodeVersionB)) {
+        return {
+          result: false,
+          diff: [
+            {key: key, value: a[key], side: 'left'},
+            {key: key, value: b[key], side: 'right'}
+          ]
+        };
+      }
+
+      // If major and minor an equal skip comparing this key
+      continue;
+    }
+
     var childResult = shrinkwrapEqual(a[key], b[key]);
     // Case: Children are not equal
     if (!childResult.result) {

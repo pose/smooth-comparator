@@ -1,6 +1,6 @@
 {
   "name": "smooth-comparator",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Compare shrinkwraps for version discrepancies.",
   "main": "index.js",
   "directories": {

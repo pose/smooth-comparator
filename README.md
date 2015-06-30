@@ -1,2 +1,2 @@
 # smooth-comparator
-Compare shrinkwraps for version discrepancies.
+Compares npm shrinkwraps for version discrepancies.
